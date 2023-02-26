@@ -1,0 +1,54 @@
+plugins {
+	id 'java'
+	id 'groovy'
+	id 'org.springframework.boot' version '2.7.7'
+	id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+}
+
+group = 'com.fallInFall'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '11'
+
+configurations {
+	compileOnly {
+		extendsFrom annotationProcessor
+	}
+}
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-batch'
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+	implementation 'com.h2database:h2:1.4.200'
+
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-core', version: '2.13.0'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-databind', version: '2.13.0'
+	implementation group: 'com.fasterxml.jackson.core', name: 'jackson-annotations', version: '2.13.0'
+
+	compileOnly 'org.projectlombok:lombok'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+
+	annotationProcessor 'org.springframework.boot:spring-boot-configuration-processor'
+	annotationProcessor 'org.projectlombok:lombok'
+
+	testImplementation 'org.codehaus.groovy:groovy-all:3.0.11'
+	testImplementation 'org.spockframework:spock-core:2.1-groovy-3.0'
+	testImplementation 'org.spockframework:spock-spring:2.1-groovy-3.0'
+	testImplementation 'com.athaydes:spock-reports:2.3.0-groovy-3.0'
+	testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.2'
+	testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.2'
+	testImplementation('org.springframework.boot:spring-boot-starter-test') {
+		exclude group: 'org.junit.vintage', module: 'junit-vintage-engine'
+	}
+	testImplementation 'org.springframework.batch:spring-batch-test'
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+//jar {
+//	duplicatesStrategy(DuplicatesStrategy.EXCLUDE)
+//}

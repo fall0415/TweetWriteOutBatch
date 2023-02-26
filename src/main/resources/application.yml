@@ -1,0 +1,19 @@
+TwitterApi :
+  statuses :
+    header :
+      authorization :
+        type : "Bearer"
+    param :
+      requestURL: "https://api.twitter.com/1.1/statuses/user_timeline.json"
+      user_name: "udoku__"
+      count : 10
+      isTrimmed : true
+      isExcluded_replies : true
+      isIncluded_rts : false
+  bearerToken :
+    path : "./src/main/resources/credential.json"
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+
